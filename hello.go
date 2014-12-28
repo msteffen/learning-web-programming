@@ -68,6 +68,10 @@ func PrintCurrentDirs1() (filenames []string, err error) {
 // Gets the contents of the current dir with os.Readdir(".") (presumably
 // implemented as a system call)
 func PrintCurrentDirs2() (filenames []string, err error) {
+	// Why is this os.Open and not os.File.Open()? Based on
+	// http://golang.org/pkg/os/ it seems like Open() is in file, but the first
+	// example illustrates that that's not how it works, but I'm not sure why
+	// I'll have to read about go packages
 	curdir, e := os.Open(".")
 	if e != nil {
 		return nil, e
